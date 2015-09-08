@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -99,16 +100,36 @@ public class BoxDrawingView extends View {
 		}
 	}
 	
+	/**
+	 * setSaveEnabled (boolean enabled) controls whether the saving of this view's state 
+	 * is enabled (that is, whether its onSaveInstanceState() method will be called). 
+	 * Note that even if freezing is enabled, the view still must have an id 
+	 * assigned to it (via setId(int)) for its state to be saved. 
+	 * Set to false to disable state saving, or true (the default) to allow it.
+	 */
 	@Override
 	protected Parcelable onSaveInstanceState() {
 		// 设备旋转销毁View实例前，保存旋转前的状态。
-		return null;
+		Log.i(TAG, "onSaveInstanceState");
+		
+		Bundle bundle = new Bundle();
+		Parcelable state = super.onSaveInstanceState(); // 获取之前保存的状态
+		
+		bundle.putParcelable("State", state);
+		bundle.putParcelableArrayList("Boxs", mBoxs);
+		
+		return bundle;
 	}
 
 	@Override
 	protected void onRestoreInstanceState(Parcelable state) {
-		super.onRestoreInstanceState(state);
-		// 设备旋转后，回复旋转前的状态。
+		// 设备旋转后，恢复旋转前的状态。
+		Log.i(TAG, "onRestoreInstanceState");
+		
+		Bundle bundle = (Bundle) state;
+		super.onRestoreInstanceState(bundle.getParcelable("state")); // 首先恢复之前的状态
+		
+		mBoxs = bundle.getParcelableArrayList("Boxs");
 	}
 
 }
