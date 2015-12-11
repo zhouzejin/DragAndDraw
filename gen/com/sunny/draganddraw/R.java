@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.sunny.drawanddraw;
+package com.sunny.draganddraw;
 
 public final class R {
     public static final class attr {

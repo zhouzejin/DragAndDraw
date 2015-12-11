@@ -1,4 +1,4 @@
-package com.sunny.drawanddraw;
+package com.sunny.draganddraw;
 
 import android.support.v4.app.Fragment;
 

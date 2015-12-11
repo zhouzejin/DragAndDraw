@@ -1,4 +1,4 @@
-<com.sunny.drawanddraw.BoxDrawingView
+<com.sunny.draganddraw.BoxDrawingView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/boxDrawingView"
     android:layout_width="match_parent"
